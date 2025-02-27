@@ -28,9 +28,6 @@ class Program(tk.Tk):
         next_page = get_page(BOOK, self.current_id)
         self.show_page(next_page)
 
-    def show_message(self):
-        messagebox.showinfo("Info", "Hello, Tkinter!")
-
 if __name__ == "__main__":
     prg = Program()
     prg.mainloop()
