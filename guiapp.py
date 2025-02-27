@@ -8,6 +8,7 @@ class Program(tk.Tk):
         super().__init__()
         self.title("Mitt äventyr")
         self.geometry("640x480")
+        self.inventory = []
         self.current_id = 1
         current_page = get_page(BOOK, self.current_id)
         self.show_page(current_page)
@@ -19,6 +20,8 @@ class Program(tk.Tk):
         self.label.pack(padx=10, pady=10)
         self.text = tk.Label(self, text=page["text"], wraplength=500)
         self.text.pack(padx=10, pady=10)
+        self.button = tk.Button(self, text="Inventory", command=self.show_inventory)
+        self.button.pack(pady=10)
         for i, option in enumerate(page["options"]):
             self.button = tk.Button(self, text=option["text"], command=lambda next_id=option["next_id"]: self.next_page(next_id))
             self.button.pack(pady=10)
@@ -27,6 +30,9 @@ class Program(tk.Tk):
         self.current_id = next_id
         next_page = get_page(BOOK, self.current_id)
         self.show_page(next_page)
+
+    def show_inventory(self):
+        messagebox.showinfo("Inventory", "\n".join(self.inventory))
 
 if __name__ == "__main__":
     prg = Program()
